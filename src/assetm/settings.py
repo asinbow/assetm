@@ -10,11 +10,11 @@ ADMINS = (
 try:
     import sae.const
     MYSQL_SETTING = {
-        'NAME': sae.const.SAE_MYSQL_DB,
-        'USER': sae.const.SAE_MYSQL_USER,
-        'PASSWORD': sae.const.SAE_MYSQL_PASS,
-        'HOST': sae.const.SAE_MYSQL_HOST_M, # SAE_MYSQL_HOST_M
-        'PORT': sae.const.SAE_MYSQL_PORT,
+        'NAME': sae.const.MYSQL_DB,
+        'USER': sae.const.MYSQL_USER,
+        'PASSWORD': sae.const.MYSQL_PASS,
+        'HOST': sae.const.MYSQL_HOST_M, # MYSQL_HOST_S
+        'PORT': sae.const.MYSQL_PORT,
     }
 except ImportError:
     MYSQL_SETTING = {
