@@ -7,16 +7,34 @@ ADMINS = (
     # ('Your Name', 'your_email@example.com'),
 )
 
+try:
+    import sae.const
+    MYSQL_SETTING = {
+        'NAME': sae.const.SAE_MYSQL_DB,
+        'USER': sae.const.SAE_MYSQL_USER,
+        'PASSWORD': sae.const.SAE_MYSQL_PASS,
+        'HOST': sae.const.SAE_MYSQL_HOST_M, # SAE_MYSQL_HOST_M
+        'PORT': sae.const.SAE_MYSQL_PORT,
+    }
+except ImportError:
+    MYSQL_SETTING = {
+        'NAME': 'mysite',
+        'USER': 'asinbow',
+        'PASSWORD': 'asinbow',
+        'HOST': 'localhost',
+        'PORT': '',
+    }
+
 MANAGERS = ADMINS
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': '',                      # Or path to database file if using sqlite3.
-        'USER': '',                      # Not used with sqlite3.
-        'PASSWORD': '',                  # Not used with sqlite3.
-        'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
-        'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
+        'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': MYSQL_SETTING['NAME'],                      # Or path to database file if using sqlite3.
+        'USER': MYSQL_SETTING['USER'],                      # Not used with sqlite3.
+        'PASSWORD': MYSQL_SETTING['PASSWORD'],                  # Not used with sqlite3.
+        'HOST': MYSQL_SETTING['HOST'],                      # Set to empty string for localhost. Not used with sqlite3.
+        'PORT': MYSQL_SETTING['PORT'],                      # Set to empty string for default. Not used with sqlite3.
     }
 }
 
@@ -28,11 +46,11 @@ ALLOWED_HOSTS = []
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
 # although not all choices may be available on all operating systems.
 # In a Windows environment this must be set to your system time zone.
-TIME_ZONE = 'America/Chicago'
+TIME_ZONE = 'Asia/Shanghai'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'zh-cn'
 
 SITE_ID = 1
 
@@ -120,7 +138,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # Uncomment the next line to enable the admin:
-    # 'django.contrib.admin',
+    'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
 )
