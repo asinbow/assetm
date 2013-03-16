@@ -1,0 +1,45 @@
+#!/bin/bash
+
+
+appversion=$1
+
+rootdir=`pwd`
+deployroot=tmp
+
+myapp=asinbow
+svnurl=https://svn.sinaapp.com/${myapp}
+svndir=${deployroot}/${myapp}
+
+gitcheckout=master
+
+if [ "x" = "x${appversion}" ]
+then
+    appversion=1
+fi
+echo "my app version ${appversion}"
+
+mkdir -p ${deployroot}
+
+if [ ! -e ${svndir} ]
+then
+    svn checkout ${svnurl} ${svndir}
+fi
+
+
+deploydir=${svndir}/${appversion}
+
+rm -rf ${deploydir}
+mkdir -p ${deploydir}
+
+echo "preparing deploy svn directory: ${deploydir}"
+
+tmpdir=`mktemp -d`
+git archive ${gitcheckout} | tar -x -C ${tmpdir} \
+    && mv ${tmpdir}/sae/* ${deploydir} \
+    && mv ${tmpdir}/src/* ${deploydir}
+rm -rf tmpdir
+
+cd ${deploydir}
+svn add .
+svn commit
+cd ${rootdir}
