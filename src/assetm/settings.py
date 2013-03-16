@@ -13,7 +13,7 @@ try:
         'NAME': sae.const.MYSQL_DB,
         'USER': sae.const.MYSQL_USER,
         'PASSWORD': sae.const.MYSQL_PASS,
-        'HOST': sae.const.MYSQL_HOST_M, # MYSQL_HOST_S
+        'HOST': sae.const.MYSQL_HOST, # MYSQL_HOST_S
         'PORT': sae.const.MYSQL_PORT,
     }
 except ImportError:
