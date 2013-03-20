@@ -40,6 +40,7 @@ git archive ${gitcheckout} | tar -x -C ${tmpdir} \
 rm -rf tmpdir
 
 cd ${deploydir}
-svn add .
+#sed -i 's/^DEBUG = True$/DEBUG = False/' assetm/settings.py
+svn add . --force
 svn commit
 cd ${rootdir}
